@@ -42,15 +42,15 @@
  	
  		String param = request.getParameter("vector");
  		if (param == null) param = "";
--
-+String sql = "SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD=?";
+ 
  		String bar = new Test().doSomething(param);
--		
-+Long results = org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForObject(sql, new Object[]{bar}, Long.class);
+ 		
  		try {
- 			String sql = "SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='"+ bar + "'";
- 	
- 			Long results = org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForLong(sql);
+-			String sql = "SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='"+ bar + "'";
+-	
+-			Long results = org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForLong(sql);
++            String sql = "SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD=?";
++            Long results = org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForObject(sql, new Object[]{bar}, Long.class);
  			java.io.PrintWriter out = response.getWriter();
  			out.write("Your results are: ");
  	//		System.out.println("your results are");
